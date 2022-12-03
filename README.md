@@ -7,6 +7,10 @@
 
 
 ## Results
+Across all the models compared, 
+the training and testing sets are split in 75% and 25% of total data respectively
+random_state=1
+
 Describe the balanced accuracy score and the precision and recall scores of all six machine learning models.
 
 - evaluate three machine learning models by using resampling to determine which is better at predicting credit risk.
