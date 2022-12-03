@@ -1,10 +1,26 @@
 # Credit_Risk_Analysis
 
+Apply Machine Learning models to predict credit risk.
+
 ## Overview
 
+Fast Lending, a peer to peer lending services company wants to use Machine Learning to predict credit risk. The management believes that this will provide a quicker and more reliable loan experience leading to a more accurate identification of good candidates for loans which will result in lower default rates. The project aims to build and evaluate several machine learning models to predict credit risk. Credit risk is an inherently unbalanced classification problem, as good loans easily outnumber risky loans. Techniques like training, resampling and boosting to make the most of the models and credit card data are employed all along. 
+- Oversample the data using the RandomOverSampler and SMOTE algorithms.
+- Undersample the data using the ClusterCentroids algorithm.
+- Use a combinatorial approach of over- and undersampling with the SMOTEENN algorithm.
+- Compare BalancedRandomForestClassifier and EasyEnsembleClassifier models to reduce bias and predict credit risk.
+- Evaluate the performance of each of the models and make a recommendation on whether they should be used to predict credit risk.
 
 ## Resources
 
+Anaconda 2022.10
+ipykernel 6.15.2
+Jupyter Notebook
+Python 3.7.13
+Pandas 1.3.5
+Scikit-learn 1.0.2
+imbalanced-learn 0.7.0
+Dataset from LendingClub 
 
 ## Results
 Across all the models compared, 
