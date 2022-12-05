@@ -26,19 +26,46 @@ Fast Lending, a peer to peer lending services company wants to use Machine Learn
 
 - Scikit-learn and imbalanced-learn Python libraries are used resample the dataset and evaluate results.
 - To ensure consistency between tests, a random_state of 1 is used for each sampling algorithm.
-- The target of the data set, "loan status", is used to determine whether the credit application was considered "low" or "high" risk. Applications that have "current" as the "loan status" are classified as "low risk" and the remaining as "high risk". With this consideration, the dataset has a total of 68,817 applications with 99% classified as "low risk".
-<img src="images/target_cnt.png" width="400"/>
+- The target of the data set, "loan status", is used to determine whether the credit application is considered "low" or "high" risk. Applications that have "current" as the "loan status" are classified as "low risk" and the remaining as "high risk". With this consideration, the dataset has a total of 68,817 applications with 99% classified as "low risk".
+<img src="ml_challenge/images/target_cnt.png" width="300"/>
 
-- The training and testing sets are split in 75% and 25% of total data respectively.
-<img src="images/train_test.png" width="400"/>
+- The training and testing sets are split in 75% and 25% of total data respectively. This shows that 51,352 "low risk" and 240 "high risk" applications are categorized into the training set.
+<img src="ml_challenge/images/train_test.png" width="550"/>
 
-<table>
- <tr>
-  <td>
-    <img src="images/model_1.png"/>
-   </td>
- </tr>
-</table>
+- The data is oversampled using the Naive Random Oversampling algorithm and the SMOTE algorithm.
+
+#### Naive Random Oversampling 
+- This model randomly selects samples (with replacement) from the minority class and adds to the training set until both minority and majority classes are balanced. As a result, both high-risk and low-risk categories count at 51,352.
+<img src="ml_challenge/images/ros_set.png" width="600"/>
+
+- The resampled data is then used to train a logistic regression model. The metrics generated are shown below:
+<img src="ml_challenge/images/model_1.png" width="600"/>
+
+- Accuracy Score, Precision, Recall
+
+#### SMOTE (Synthetic Minority Oversampling Technique)
+- Like Random Oversampling technique, SMOTE also increases the size of the minority class by creating new values based on the value of the closest neighbors to the minority class instead of random selection. The resampled data in minority and majority classes count at 51,352.
+- Upon training a logistic regression model using the resampled data, the following metrics are generated:
+<img src="ml_challenge/images/model_2.png" width="600"/>
+
+- Accuracy Score, Precision, Recall
+
+#### Undersampling with Cluster Centroids algorithm
+-
+<img src="ml_challenge/images/model_3.png" width="600"/>
+
+#### Combination Sampling using SMOTEENN algorithm
+-
+<img src="ml_challenge/images/model_4.png" width="600"/>
+
+#### Balanced Random Forest Classifier
+- 
+<img src="ml_challenge/images/model_5.png" width="600"/>
+
+#### Easy Ensemble AdaBoost Classifier
+-
+<img src="ml_challenge/images/model_6.png" width="600"/>
+
 
 Describe the balanced accuracy score and the precision and recall scores of all six machine learning models.
 
