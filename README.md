@@ -74,35 +74,49 @@ Fast Lending, a peer to peer lending services company wants to use Machine Learn
 - Below are the metrics generated when resampled data is trained with a logistic regression model.
 <img src="ml_challenge/images/model_4.png" width="600"/>
 
-- The metrics are not greatly influenced by the combination of oversampling and undersampling, however some did show an improvement over undersampling. 
-- The balanced accuracy score improved to 64.3%.
+- The metrics are not greatly influenced by the combination of oversampling and undersampling, however some did show an improvement over undersampling. The balanced accuracy score improved to 64.3%.
 - The "High Risk" precision remains at 1% which is same as the other models. 
-- The recall increased to 69% giving this model an F1 score of 0.02. This model correctly classifies 69% of High Risk applicants and 60% of low risk applicants. This model has the best sensitivity for detecting high risk applicants out of all four sampling models used thus far.
+- The recall increased to 69% giving this model an F1 score of 0.02. This model correctly classifies 69% of High Risk applicants and 60% of low risk applicants. 
+- This model has the best sensitivity for detecting high risk applicants out of all four sampling models used thus far.
+
+#### Ensemble Classifiers
+- The two ensemble classifiers (BalancedRandomForest and EasyEnsemble) are trained with 51,366 cases as High Risk and 246 cases as Low Risk.
+<img src="ml_challenge/images/ensemble_set.png" width="300"/>
+
+- A random state of 1 is used for each algorithm to ensure consistency between tests.
+- The training data is resampled with 100 estimators.
 
 #### Balanced Random Forest Classifier
-- 
+- The Random Forest Classifier is composed of several small decision trees created from random sampling. By using the Balanced Random Forests, the following the done:
+  - Draw a bootstrap sample from the minority class and randomly draw the same number of cases, with replacement, from the majority class. 
+  - Induce a classification tree from the data to maximum size, without pruning. At each node, instead of searching through all
+variables for the optimal split, only search through a set of randomly selected variables.
+  - Repeat the two steps above for desired number of times. Aggregate the predictions of the ensemble and make the final prediction.
+
+- With a balanced accuracy score of 78.85%, this classifier accurately predicts credit risk 78.85% of the time.
 <img src="ml_challenge/images/model_5.png" width="600"/>
 
+- This model has the highest precision at 3% for classifying high risk applicants compared to models built from sampling techniques alone. However, even with this precision score, the model still classifies 96% of high risk applicants as low risk. The precision score for classifying low risk applicants is same as the previous models (100%). 
+- This model correctly identifies 87% of low risk applicants as low risk, and 70% of high risk applicants as high risk. At 70% recall for High Risk cases, it can be noted that score is 1% higher than the recall score from the SMOTEENN model. The high recall score for Low Risk cases makes this ensemble model a better performer than models built from sampling techniques alone.
+
 #### Easy Ensemble AdaBoost Classifier
--
+- The algorithm for the classifier works like below:
+  - Easy Ensemble involves creating balanced samples of the training dataset by selecting all cases from the minority class and a subset from the majority class.
+  - Rather than using pruned decision trees, boosted decision trees are used on each subset, specifically the AdaBoost algorithm.
+  - AdaBoost works by first fitting a decision tree on the dataset, then determining the errors made by the tree and weighing the examples in the dataset by those errors so that more attention is paid to the misclassified examples and less to the correctly classified examples. A subsequent tree is then fit on the weighted dataset intended to correct the errors. The process is then repeated for a given number of decision trees.
 <img src="ml_challenge/images/model_6.png" width="600"/>
 
-- Precision is more than recall, this should be the case for loan classifiers in banking. Higher precision classifiers won’t accidentally reject a potential customer and lose the business.
-The F1 Score is at 0.8 which can conclude that this model is good at predicting "Low Risk" classes.
-
-Describe the balanced accuracy score and the precision and recall scores of all six machine learning models.
-
-- evaluate three machine learning models by using resampling to determine which is better at predicting credit risk.
-  - Random Oversampler
-  - SMOTE
-  - Cluster centroids
-  
-- use SMOTEENN algorithm to determine if the results from the combinatorial approach are better at predicting credit risk than the above resampling algorithms 
-
-- Compare classifiers using BalancedRandomForestClassifier and EasyEnsembleClassifier, to predict credit risk and evaluate each model.
+- With a balanced accuracy score of 93.12%, This model has the highest accuracy score among the models evaluated thus far.
+- The precision score for correctly identifying High Risk applicants is 9%, which is the highest for all 6 models. The precision score for low risk applicants is 100%, which is the same as the other models.
+- Reading the recall column, 91% of high risk and 94% of low risk applicants are correctly identified, which is the highest recall score of all the models.
 
 ## Summary
 
 - summary of the results
+
+- Precision is more than recall, this should be the case for loan classifiers in banking. Higher precision classifiers won’t accidentally reject a potential customer and lose the business.
+The F1 Score is at 0.8 which can conclude that this model is good at predicting "Low Risk" classes.
+
+
 - a recommendation on which model to use, or there is no recommendation with a justification
 
