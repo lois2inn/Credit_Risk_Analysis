@@ -36,19 +36,26 @@ Fast Lending, a peer to peer lending services company wants to use Machine Learn
 
 #### Naive Random Oversampling 
 - This model randomly selects samples (with replacement) from the minority class and adds to the training set until both minority and majority classes are balanced. As a result, both high-risk and low-risk categories count at 51,352.
-<img src="ml_challenge/images/ros_set.png" width="600"/>
+<img src="ml_challenge/images/ros_set.png" width="400"/>
 
 - The resampled data is then used to train a logistic regression model. The metrics generated are shown below:
 <img src="ml_challenge/images/model_1.png" width="600"/>
 
-- Accuracy Score, Precision, Recall
+- The balanced accuracy score reads 65%. 
+- There are 55 instances of "High Risk" class that are predicted correctly while 32 of "Low Risk" class are predicted falsely as "High Risk". Also, 5570 "Low Risk" applications are falsely predicted as "High Risk". The model shows a slightly better performance in identifying “Low Risk” class than a “High Risk” class. 
+- The "High Risk" precision rate is 1% which means that only 1% of predicted "High Risk" applications are truly "High Risk".
+- The "High Risk" recall registers 63%. That means among all predicted 5620 "High Risk" applications, only 63% are correctly predicted giving this model an F1 score of 2%.
+- The "Low Risk" has a precision rate of 100% and recall at 67%.
 
 #### SMOTE (Synthetic Minority Oversampling Technique)
 - Like Random Oversampling technique, SMOTE also increases the size of the minority class by creating new values based on the value of the closest neighbors to the minority class instead of random selection. The resampled data in minority and majority classes count at 51,352.
 - Upon training a logistic regression model using the resampled data, the following metrics are generated:
 <img src="ml_challenge/images/model_2.png" width="600"/>
 
-- Accuracy Score, Precision, Recall
+- The balanced accuracy score has recorded 65% which is the same as Naive Random Oversampler.
+- Like RandomOverSampler, the "High Risk" precision rate again is only 1% with the recall improve to 64% giving this model an F1 score of 2%.
+- "Low Risk" class has a precision rate of 100% and decrease in recall at 66%.
+
 
 #### Undersampling with Cluster Centroids algorithm
 -
@@ -66,6 +73,7 @@ Fast Lending, a peer to peer lending services company wants to use Machine Learn
 -
 <img src="ml_challenge/images/model_6.png" width="600"/>
 
+- Precision is more than recall, this should be the case for loan classifiers in banking. Higher precision classifiers won’t accidentally reject a potential customer and lose the business.
 
 Describe the balanced accuracy score and the precision and recall scores of all six machine learning models.
 
