@@ -81,7 +81,7 @@ Fast Lending, a peer to peer lending services company wants to use Machine Learn
 
 #### Ensemble Classifiers
 - The two ensemble classifiers (BalancedRandomForest and EasyEnsemble) are trained with 51,366 cases as High Risk and 246 cases as Low Risk.
-<img src="ml_challenge/images/ensemble_set.png" width="300"/>
+<img src="ml_challenge/images/ensemble_set.png" width="500"/>
 
 - A random state of 1 is used for each algorithm to ensure consistency between tests.
 - The training data is resampled with 100 estimators.
@@ -98,6 +98,8 @@ variables for the optimal split, only search through a set of randomly selected 
 
 - This model has the highest precision at 3% for classifying high risk applicants compared to models built from sampling techniques alone. However, even with this precision score, the model still classifies 96% of high risk applicants as low risk. The precision score for classifying low risk applicants is same as the previous models (100%). 
 - This model correctly identifies 87% of low risk applicants as low risk, and 70% of high risk applicants as high risk. At 70% recall for High Risk cases, it can be noted that score is 1% higher than the recall score from the SMOTEENN model. The high recall score for Low Risk cases makes this ensemble model a better performer than models built from sampling techniques alone.
+- Of all the features evaluated by this classifier, "total_rec_prncp" is ranked very important at 7.9%.
+<img src="ml_challenge/images/feature_imp.png" width="300"/>
 
 #### Easy Ensemble AdaBoost Classifier
 - The algorithm for the classifier works like below:
@@ -112,11 +114,10 @@ variables for the optimal split, only search through a set of randomly selected 
 
 ## Summary
 
-- summary of the results
+- In reviewing all six models, the Easy Ensemble Classifer yielded the best results with an accuracy rate of 93.12% and a 9% precision rate when predicting "High Risk" applications. The sensitivity rate for predicting "High Risk" is also the highest at 91% compared to the other models. The result for predicting "Low Risk" was also the highest with the sensitivity rate at 94% and an F1 score of 97%. 
+- Therefore, if a recommendation has to be provided to perform this type of analysis, then Easy Ensemble Classifer would be the clear choice.
+- However, it should be noted that the original dataset had 99% of the applications classified as "Low Risk" with only 1% of the data classified in the "High Risk" category. This may skew the results greatly as there is a risk that the Machine Learning algorithms are creating clusters drawing from too small of a dataset of actual "High Risk" applications. This margin of risk might not be something that banks would be comfortable accepting.
+- For most of the loan classifiers in banking industry, precision is more than recall because higher precision classifiers won’t accidentally reject a potential customer and lose the business.
+The F1 Score is at 0.97 which can conclude that this model is good at predicting "Low Risk" classes.
 
-- Precision is more than recall, this should be the case for loan classifiers in banking. Higher precision classifiers won’t accidentally reject a potential customer and lose the business.
-The F1 Score is at 0.8 which can conclude that this model is good at predicting "Low Risk" classes.
-
-
-- a recommendation on which model to use, or there is no recommendation with a justification
 
