@@ -113,11 +113,10 @@ variables for the optimal split, only search through a set of randomly selected 
 - Reading the recall column, 91% of high risk and 94% of low risk applicants are correctly identified, which is the highest recall score of all the models.
 
 ## Summary
-
-- In reviewing all six models, the Easy Ensemble Classifer yielded the best results with an accuracy rate of 93.12% and a 9% precision rate when predicting "High Risk" applications. The sensitivity rate for predicting "High Risk" is also the highest at 91% compared to the other models. The result for predicting "Low Risk" was also the highest with the sensitivity rate at 94% and an F1 score of 97%. 
+- While resampling can attempt to address imbalance among data classes, it does not guarantee better results. Upon reviewing all six models, the Easy Ensemble Classifer yielded the best results with an accuracy rate of 93.12% and a 9% precision rate when predicting "High Risk" applications. The sensitivity rate for predicting "High Risk" is also the highest at 91% compared to the other models. The result for predicting "Low Risk" was also the highest with the sensitivity rate at 94% and an F1 score of 97%. 
 - Therefore, if a recommendation has to be provided to perform this type of analysis, then Easy Ensemble Classifer would be the clear choice.
 - However, it should be noted that the original dataset had 99% of the applications classified as "Low Risk" with only 1% of the data classified in the "High Risk" category. This may skew the results greatly as there is a risk that the Machine Learning algorithms are creating clusters drawing from too small of a dataset of actual "High Risk" applications. This margin of risk might not be something that banks would be comfortable accepting.
-- For most of the loan classifiers in banking industry, precision is more than recall because higher precision classifiers won’t accidentally reject a potential customer and lose the business.
-The F1 Score is at 0.97 which can conclude that this model is good at predicting "Low Risk" classes.
+- For most of the loan classifiers in banking industry, precision is more than recall because higher precision classifiers won’t accidentally reject a potential customer and lose the business. The recommended model has high false positive rate meaning that of the applicants that are predicted to be high risk, only a small amount of them will actually be high risk. In this scenario though, it is better for the model to have greater sensitivity than precision because the credit card company would rather wrongly classify low risk applicants as high risk, than have high risk applicants classified as low risk thus approving them for a credit card or loan they are unable to repay. Also, the credit card company can further narrow down and examine these potential high risk individuals later on outside of the machine learning scope.
+
 
 
